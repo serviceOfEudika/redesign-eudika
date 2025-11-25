@@ -13,11 +13,14 @@ import { FaArrowUp } from "react-icons/fa6";
 import king from '@/public/assets/king.png'
 import quesion from '@/public/assets/question.png'
 import khan from '@/public/assets/khan.png'
+import sarah from '@/public/assets/sarah.png'
+import priya from '@/public/assets/priya.png'
+import david from '@/public/assets/david.png'
 
 interface Tutor {
   id: number;
   name: string;
-  image: string;
+  image: string | StaticImageData;
   price: string;
   subjects: string[];
   location: string;
@@ -29,15 +32,16 @@ interface Tutor {
   };
 }
 
-// Utility to format image file name from tutor name
+// Utility to format image file name from tutor name, or return StaticImageData directly
 const getTutorImage = (tutor: Tutor) => {
-  // If path is default placeholder, replace with a built file-name for demo
+  // If it's an imported StaticImageData (like khan), return as is
+  if (typeof tutor.image !== 'string') return tutor.image;
+  // If path is default placeholder, return demo asset path (could extend for demo images)
   if (tutor.image === '/api/placeholder/300/300') {
-    // Use a lowercase, hyphenated version of the name, fallback to default if in doubt
     const nameSlug = tutor.name.trim().toLowerCase().replace(/[\s.]+/g, '-').replace(/[^a-z0-9-]/g, '');
-    // You can replace this with actual mapping for real usage
     return `/assets/demo-tutors/${nameSlug}.png`;
   }
+  // For any other string, just return as is
   return tutor.image;
 };
 
@@ -46,7 +50,7 @@ const OurProTutors = () => {
     {
       id: 1,
       name: 'Ahmed Rahman',
-      image: '@/public/assets/khan.png', // Replace with actual image path
+      image: khan, // Use imported image object instead of string
       price: '4,500',
       subjects: ['Physics', 'Chemistry', 'Biology'],
       location: 'Dhaka',
@@ -63,7 +67,7 @@ const OurProTutors = () => {
     {
       id: 2,
       name: 'Sarah Mitchell',
-      image: '/api/placeholder/300/300', // Replace with actual image path
+      image: sarah, // Replace with actual image path
       price: '10,000',
       subjects: ['Mathematics', 'Algebra'],
       location: 'Dhaka',
@@ -80,7 +84,7 @@ const OurProTutors = () => {
     {
       id: 3,
       name: 'Priya Sharma',
-      image: '/api/placeholder/300/300', // Replace with actual image path
+      image: priya, // Replace with actual image path
       price: '3,500',
       subjects: ['English', 'Creative Writing', 'IELTS'],
       location: 'Khulna',
@@ -97,7 +101,7 @@ const OurProTutors = () => {
     {
       id: 4,
       name: 'David Lee',
-      image: '/api/placeholder/300/300', // Replace with actual image path
+      image: david, // Replace with actual image path
       price: '5,500',
       subjects: ['Computer Science', 'Coding'],
       location: 'Satkhira',
@@ -114,7 +118,8 @@ const OurProTutors = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 lg:py-20">
+    <section className="py-12 md:py-16 lg:py-20 bg-[#fafafa]">
+      
       <div className="max-w-6xl mx-auto px-4 md:px-13">
         {/* Header Section */}
         <div className="text-center mb-10 md:mb-12 lg:mb-16">
@@ -147,25 +152,24 @@ const OurProTutors = () => {
               {/* Profile Image Section */}
               <div className="relative ">
                 <Image
-                  src={batch_1}
+                  src={getTutorImage(tutor)}
                   alt={tutor.name + " profile image"}
                   width={320}
                   height={320}
                   className=" object-cover rounded-2xl mb-2"
                   priority
-                 
                 />
 
     
                 {/* Share Icon Button */}
                 <button
                   className="absolute top-3 right-3
-                   w-8 h-8 bg-[#e1e1e1] hover:bg-white rounded-full
+                   w-8 h-8 bg-white rounded-full
                     flex items-center justify-center shadow-sm transition-colors"
                   aria-label="Share"
                   type="button"
                 >
-                  <IoMdShare />
+                  <IoMdShare className='text-black'/>
                 </button>
 
                 {/* Experience Badges Overlay */}
@@ -214,7 +218,7 @@ const OurProTutors = () => {
                     />
 
                   </div>
-                  <FaArrowUp className='rotate-45' />
+                  <FaArrowUp className='rotate-45 text-black' />
                 </div>
 
                 {/* Price and Pro Badge */}
