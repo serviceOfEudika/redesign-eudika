@@ -128,7 +128,7 @@ const OurProTutors = () => {
             <ShieldIconWithText text="Tutors" iconSize="sm" textSize="sm" />
           </div>
           {/* Main Heading */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl  font-bold text-black mb-4">
             Our Pro Tutors
           </h2>
           {/* Description */}
@@ -318,7 +318,7 @@ const OurProTutors = () => {
             type="button"
           >
             <span>View More</span>
-            <FaArrowUp className='rotate-90' />
+            <HiArrowUpRight className="text-base rotate-45" />
              
           </button>
         </div>

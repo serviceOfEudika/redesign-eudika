@@ -42,7 +42,7 @@ const ShieldIconWithText: React.FC<ShieldIconWithTextProps> = ({
 
       {/* Text */}
       <span
-        className={`font-bold tracking-[6px] text-black ${textSizes[textSize]} ${textClassName}`}
+        className={`font-bold tracking-[4px] text-black ${textSizes[textSize]} ${textClassName}`}
       >
         {text}
       </span>

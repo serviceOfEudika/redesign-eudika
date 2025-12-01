@@ -9,6 +9,7 @@ import choosesLeft from '@/public/assets/chooses-left.png';
 import choosesRight from '@/public/assets/chooses-right.png';
 import bgMixLeft from '@/public/assets/bg-mix-left.png';
 import bgMixRight from '@/public/assets/bg-mix-right.png';
+import { FaArrowUp } from 'react-icons/fa';
 
 interface MethodCard {
   id: string;
@@ -57,8 +58,8 @@ const methods: MethodCard[] = [
 
 const ChooseYourLearningStyle = () => {
   return (
-    <section className="bg-white py-12 md:py-16 lg:py-20">
-      <div className="mx-auto max-w-6xl px-4 md:px-8">
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 md:px-13">
         <div className="text-center">
           <ShieldIconWithText
             text="Tutoring method"
@@ -67,7 +68,7 @@ const ChooseYourLearningStyle = () => {
             className="justify-center text-[#000000]"
             textClassName="tracking-[5px] text-[#000000]"
           />
-          <h2 className="mt-4 text-3xl font-bold text-black md:text-4xl lg:text-[42px]">
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-bold text-black ">
             Choose Your Learning Style
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-xs text-[#000000] md:text-sm">
@@ -75,66 +76,87 @@ const ChooseYourLearningStyle = () => {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 ">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 ">
           {methods.map((method) => (
             <article
               key={method.id}
               className="relative overflow-hidden rounded-[32px] 
-               p-6 shadow-[0_30px_80px_rgba(8,15,52,0.08)] "
+               p-6 bg-[#fafafa] "
             >
-              <div className="pointer-events-none absolute inset-0 opacity-10">
-                <Image
-                  src={method.pattern}
-                  alt=""
-                  fill
-                  className="object-contain object-center"
-                />
-              </div>
 
-              <div className="relative flex flex-col gap-6 ">
-                <div className="flex w-full flex-col gap-4 md:flex-row md:items-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f7ec91]">
-                    <HiArrowUpRight className="text-xl text-black" />
+
+              <div className="flex flex-col gap-6 w-full h-full">
+
+                <div className="flex  justify-between w-full">
+
+                  <div className="flex items-center justify-center rounded-full
+                   bg-[#edc623] min-w-[44px] min-h-[44px] h-11 w-11 md:h-12 md:w-12">
+                    <HiArrowUpRight className="text-lg md:text-2xl text-white" />
                   </div>
-                  <div className="relative w-full flex-1">
-                    <div className="relative h-40 w-full overflow-hidden rounded-[34px] md:h-44">
+
+                  <div className="flex items-center justify-end relative w-[80%]">
+
+                    <div className="relative flex-shrink-0 h-30 w-30 md:w-40 md:h-40">
+                      <Image
+                        src={method.pattern}
+                        alt=""
+                        fill
+                        className="object-contain"
+                        sizes=""
+                      />
+                    </div>
+                    <div className="relative flex-shrink-0 h-40 w-40 md:h-50 md:w-50 ">
                       <Image
                         src={method.image}
                         alt={method.title}
                         fill
-                        className="object-cover"
-                        style={{
-                          clipPath: 'polygon(0% 0%, 100% 0%, 100% 80%, 78% 100%, 0% 100%)',
-                        }}
+                        className="object-contain"
+                        sizes=""
                       />
                     </div>
+
                   </div>
+
                 </div>
 
-                <div className="space-y-3 text-left">
-                  <h3 className="text-lg font-semibold text-black md:text-xl">{method.title}</h3>
-                  <p className="text-sm text-[#4a4a4a] md:text-base">{method.description}</p>
-
-                  <ul className="space-y-2 text-xs text-black md:text-sm">
+                <div className="flex flex-col space-y-3 text-left  relative -top-15 ">
+                  <h3 className="text-base font-semibold text-black md:text-lg">{method.title}</h3>
+                  <p className="text-xs md:text-sm text-[#4a4a4a] w-[70%] ">{method.description}</p>
+                  <ul className="space-y-2 text-[10px] md:text-xs text-black">
                     {method.highlights.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <IoIosCheckmarkCircle className="h-4 w-4 text-[#f0c419]" />
-                        <span>{item}</span>
+                      <li key={item} className="flex gap-2 items-center">
+                        <IoIosCheckmarkCircle className="h-2 w-2 md:h-3 md:w-3 text-black" />
+                        <span className="leading-tight">{item}</span>
                       </li>
                     ))}
                   </ul>
+
+
+                  <div className='w-full flex justify-end'>
+
+                  <button
+                    className="bg-[#edc623] hover:bg-yellow-500 cursor-pointer 
+                      text-black px-4 py-2 rounded-full flex items-center 
+                      gap-2 mx-auto transition-colors text-sm md:text-base shadow-md hover:shadow-lg"
+                    type="button"
+                  >
+                    <span>{method.cta}</span>
+                    <HiArrowUpRight className="text-base rotate-45" />
+                  </button>
+
+                  </div>
+              
+                
+
+              
+
                 </div>
 
-                <div>
-                  <button
-                    type="button"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#edc623] px-5 py-2 text-sm font-semibold text-black transition hover:bg-[#ffda3d]"
-                  >
-                    {method.cta}
-                    <HiArrowUpRight className="text-base" />
-                  </button>
-                </div>
+                
+
+          
               </div>
+
             </article>
           ))}
         </div>

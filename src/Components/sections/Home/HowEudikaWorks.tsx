@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import ShieldIconWithText from '@/src/Components/common/ShieldIconWithText';
 import { FaArrowUp } from 'react-icons/fa';
+import { HiArrowUpRight } from 'react-icons/hi2';
 
 interface FeatureCard {
   image: string;
@@ -116,7 +117,7 @@ const HowEudikaWorks = () => {
         </div>
 
         {/* Main Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3 md:mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-3 md:mb-4">
           How Eudika Works
         </h2>
 
@@ -231,7 +232,7 @@ const HowEudikaWorks = () => {
           type="button"
         >
           <span>Get Started</span>
-          <FaArrowUp className='rotate-90' />
+          <HiArrowUpRight className="text-base rotate-45" />
         </button>
       </div>
     </section>

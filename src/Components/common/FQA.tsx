@@ -89,7 +89,8 @@ const FQA: React.FC<FQAProps> = ({
 
   return (
     <section
-      className={`px-4 max-w-6xl md:px-13 mx-auto py-8 md:py-12 lg:py-16 bg-white ${sectionClassName}`}
+      className={`px-4 max-w-6xl md:px-13 mx-auto py-8 md:py-12 lg:py-16
+         bg-white ${sectionClassName}`}
     >
       {/* Header Section */}
       <div className="text-center mb-8 md:mb-12">
@@ -99,40 +100,41 @@ const FQA: React.FC<FQAProps> = ({
         </div>
 
         {/* Main Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3 md:mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-3 md:mb-4">
           {title}
         </h2>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base md:text-lg text-[#333333] max-w-2xl mx-auto">
+        <p className="text-xs md:text-sm  text-[#333333] w-[90%] max-w-sm mx-auto">
           {subtitle}
         </p>
       </div>
 
       {/* FAQ Accordion Items */}
-      <div className="space-y-3 md:space-y-4 max-w-4xl mx-auto">
+      <div className="space-y-3 md:space-y-4 max-w-3xl mx-auto">
         {faqs.map((faq) => {
           const isOpen = openItems.has(faq.id);
           return (
             <div
               key={faq.id}
               className={`
-                rounded-xl border transition-all duration-300 overflow-hidden
+                rounded-xl  transition-all duration-300 overflow-hidden
                 ${
                   isOpen
-                    ? 'bg-[#FFFBF0] border-[#FFFBF0] shadow-sm'
-                    : 'bg-white border-gray-200 shadow-sm hover:shadow-md'
+                    ? 'bg-[#fdf9e9] '
+                    : 'bg-[#fafafa]  shadow-sm hover:shadow-md'
                 }
               `}
             >
               {/* Question Button */}
               <button
                 onClick={() => toggleItem(faq.id)}
-                className="w-full px-4 md:px-6 py-4 md:py-5 flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-[#ECBB4F] focus:ring-offset-2 rounded-xl"
+                className="w-full px-4 md:px-6 py-3 md:py-4 flex items-center justify-between
+                 text-left  rounded-xl"
                 aria-expanded={isOpen}
                 aria-controls={`faq-answer-${faq.id}`}
               >
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-black pr-4 flex-1">
+                <h3 className="text-sm md:text-base font-semibold text-black pr-4 flex-1">
                   {faq.question}
                 </h3>
                 <motion.div
@@ -141,7 +143,7 @@ const FQA: React.FC<FQAProps> = ({
                   className="shrink-0"
                 >
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-black"
+                    className="w-3 h-3 md:w-4 md:h-4 text-black"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -167,8 +169,8 @@ const FQA: React.FC<FQAProps> = ({
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 md:px-6 pb-4 md:pb-5">
-                      <p className="text-sm sm:text-base md:text-lg text-black leading-relaxed">
+                    <div className="px-4 md:px-6 pb-3 md:pb-4">
+                      <p className="md:text-sm text-xs text-black leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>

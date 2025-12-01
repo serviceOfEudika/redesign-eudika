@@ -11,6 +11,7 @@ import start2 from '@/public/assets/start-2.png';
 import start3 from '@/public/assets/start-3.png';
 import { FaArrowUp } from 'react-icons/fa';
 import { MdSearch } from "react-icons/md";
+import { HiArrowUpRight } from 'react-icons/hi2';
 
 const highlights = [
   'Flexible teaching opportunities (online & in-person)',
@@ -62,7 +63,7 @@ const StartTeachingToday = () => {
           type="button"
         >
           <span>Search Tuition</span>
-          <FaArrowUp className='rotate-90' />
+          <HiArrowUpRight className="text-base rotate-45" />
         </button>
             </div>
 
