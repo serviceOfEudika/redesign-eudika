@@ -23,8 +23,8 @@ const highlights = [
 
 const StartTeachingToday = () => {
   return (
-    <section className="py-12 md:py-20 lg:py-24 bg-[#fafafa]">
-      <div className="max-w-6xl mx-auto px-4 md:px-10">
+    <section className="py-10 md:py-20  bg-[#fafafa]">
+      <div className="max-w-6xl mx-auto px-4 md:px-13">
         <div className="grid gap-10 lg:gap-16 lg:grid-cols-[1.05fr_0.95fr] items-center">
           {/* Left - Content */}
           <div className="text-gray-900 space-y-4">

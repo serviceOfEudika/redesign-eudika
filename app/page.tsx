@@ -8,6 +8,8 @@ import FindTutorsNearby from "@/src/Components/sections/Home/FindTutorsNearby";
 import EudikaUniqueLearning from "@/src/Components/sections/Home/EudikaUniqueLearning";
 import TrustedLearningBenefits from "@/src/Components/sections/Home/TrustedLearningBenefits";
 import OurAchievements from "@/src/Components/sections/Home/OurAchievements";
+import ExploreEudika from "@/src/Components/sections/Home/ExploreEudika";
+import LovedbyOurCommunity from "@/src/Components/sections/Home/LovedbyOurCommunity";
 
 export default function Home() {
   return (
@@ -20,8 +22,10 @@ export default function Home() {
     <FindTutorsNearby></FindTutorsNearby>
     <EudikaUniqueLearning></EudikaUniqueLearning>
     <TrustedLearningBenefits></TrustedLearningBenefits>
+    <LovedbyOurCommunity></LovedbyOurCommunity>
     <OurAchievements></OurAchievements>
     <FQA></FQA>
+    <ExploreEudika></ExploreEudika>
     </div>
   );
 }
