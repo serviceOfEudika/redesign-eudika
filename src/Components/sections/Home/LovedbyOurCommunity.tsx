@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ShieldIconWithText from '@/src/Components/common/ShieldIconWithText';
-import { FaStar } from 'react-icons/fa';
+import { MdOutlineStar } from 'react-icons/md';
 
 interface Testimonial {
   id: string;
@@ -102,7 +102,6 @@ const LovedbyOurCommunity = () => {
     return testimonials.filter((testimonial) => testimonial.category === selectedFilter);
   }, [selectedFilter]);
 
-  // Infinite looping for autoplay
   useEffect(() => {
     if (filteredTestimonials.length <= 1) return;
     intervalRef.current = setInterval(() => {
@@ -113,24 +112,11 @@ const LovedbyOurCommunity = () => {
     };
   }, [filteredTestimonials]);
 
-  // Reset to center when filter changes
   useEffect(() => {
     setCurrentIndex(0);
   }, [filteredTestimonials]);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? filteredTestimonials.length - 1 : prev - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) =>
-      prev === filteredTestimonials.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  // For three-card carousel effect, get left, center, and right index
+  // 3-card logic
   const getIndices = () => {
     const len = filteredTestimonials.length;
     if (!len) return [0, 0, 0];
@@ -142,17 +128,20 @@ const LovedbyOurCommunity = () => {
 
   const [leftIdx, centerIdx, rightIdx] = getIndices();
 
-  // Helpers for classnames
+  // Card transform helpers
   function cardClass(pos: 'left' | 'center' | 'right') {
     if (pos === 'center') {
-      return "z-20 scale-100 opacity-100 blur-none";
+      // Large and foremost
+      return "z-20 scale-105 md:scale-110 opacity-100";
     }
-    return "z-10 scale-90 opacity-80 blur-[2px] pointer-events-none select-none";
+    // Slightly smaller and faded for side cards, no blur
+    return "z-10 scale-95 opacity-80 pointer-events-none select-none";
   }
   function containerMargin(pos: 'left' | 'center' | 'right') {
-    // simulate cards peeking in/out
-    if (pos === 'left') return "translate-x-[-60%] md:translate-x-[-80%]";
-    if (pos === 'right') return "translate-x-[60%] md:translate-x-[80%]";
+    // Add extra spacing among cards horizontally
+    // Increase the translate-x values for more separation between cards
+    if (pos === 'left') return "translate-x-[-55%] md:translate-x-[-58%]"; // increased from -42%/-44%
+    if (pos === 'right') return "translate-x-[55%] md:translate-x-[58%]";   // increased from 42%/44%
     return "";
   }
 
@@ -160,23 +149,32 @@ const LovedbyOurCommunity = () => {
     <section className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-13">
         {/* Header Section */}
-        <div className="text-center mb-8 md:mb-12">
-          <div className="flex justify-center mb-4 md:mb-6">
+        <div className="text-center mb-8 ">
+          <div className="flex justify-center  ">
             <ShieldIconWithText text="Testimonials" iconSize="sm" textSize="sm" />
           </div>
-          <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
-            <div className="text-3xl md:text-4xl font-bold">G</div>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="text-3xl md:text-4xl font-bold">
+              <Image
+                src="/assets/google.png"
+                alt="Google"
+                width={22}
+                height={22}
+                className="inline-block mr-1 align-middle"
+              />
+            </div>
             <div className="flex gap-1">
               {[...Array(5)].map((_, i) => (
-                <FaStar key={i} className="text-[#FFC107] text-xl md:text-2xl" />
+                <MdOutlineStar key={i} className="text-[#FFC107] text-xl md:text-2xl" />
               ))}
             </div>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 md:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-4 ">
             Loved By Our Community
           </h2>
-          <p className="text-sm md:text-base text-[#333333] max-w-3xl mx-auto">
-            Eudika connects students, parents, tutors, and institutions with trust, proven results, and meaningful learning experiences.
+          <p className="text-xs md:text-sm text-[#333333] mx-auto">
+            Eudika connects students, parents, tutors, and institutions with  <span className='hidden md:inline'><br /></span> trust, proven results,
+             and meaningful learning experiences.
           </p>
         </div>
 
@@ -218,73 +216,58 @@ const LovedbyOurCommunity = () => {
         {/* Testimonial Carousel */}
         <div className="relative flex items-center justify-center select-none">
           {/* Blurry gradient at left/right for peek effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-[12%] z-30 pointer-events-none"
+          <div className="absolute left-0 top-0 bottom-0 w-[6%] z-30 pointer-events-none"
             style={{
               background: "linear-gradient(to right,rgba(255,255,255,.95),rgba(255,255,255,0))"
             }}
           />
-          <div className="absolute right-0 top-0 bottom-0 w-[12%] z-30 pointer-events-none"
+          <div className="absolute right-0 top-0 bottom-0 w-[6%] z-30 pointer-events-none"
             style={{
               background: "linear-gradient(to left,rgba(255,255,255,.95),rgba(255,255,255,0))"
             }}
           />
-          {/* Arrows (desktop) */}
-          <button
-            aria-label="Previous testimonial"
-            className="hidden md:flex absolute left-2 z-40 w-9 h-9 items-center justify-center rounded-full bg-white/70 hover:bg-white/90 shadow border border-gray-200 text-2xl text-gray-400 hover:text-gray-900 transition-all"
-            style={{ top: '50%', transform: 'translateY(-50%)' }}
-            onClick={handlePrev}
-            tabIndex={0}
-            type="button"
-          >
-            <span aria-hidden>&#8592;</span>
-          </button>
-          <button
-            aria-label="Next testimonial"
-            className="hidden md:flex absolute right-2 z-40 w-9 h-9 items-center justify-center rounded-full bg-white/70 hover:bg-white/90 shadow border border-gray-200 text-2xl text-gray-400 hover:text-gray-900 transition-all"
-            style={{ top: '50%', transform: 'translateY(-50%)' }}
-            onClick={handleNext}
-            tabIndex={0}
-            type="button"
-          >
-            <span aria-hidden>&#8594;</span>
-          </button>
-          {/* Cards: center + left + right */}
-          <div className="flex items-center justify-center w-full max-w-3xl mx-auto relative h-[370px] md:h-[370px]">
+          {/* Cards: center + left + right - Add horizontal gap using increased translate-x and also add some px gap */}
+          <div className="flex items-center justify-center w-full max-w-3xl mx-auto 
+          relative h-[270px] md:h-[280px]">
             {/* Left */}
             {filteredTestimonials.length > 0 &&
               <div
                 className={`
                   absolute left-0 top-1/2
                   -translate-y-1/2 
-                  w-2/3 md:w-1/2 ${cardClass('left')}
+                  w-11/12 md:w-3/4 ${cardClass('left')}
                   transition-all duration-500
                   ${containerMargin('left')}
-                  `}
+                `}
                 style={{ pointerEvents: "none" }}
               >
-                <TestimonialCard
-                  testimonial={filteredTestimonials[leftIdx]}
-                  blur
-                  key={'card-left-' + leftIdx}
-                />
+                <div className="mx-2 md:mx-4"> {/* Add left/right margin for extra horizontal space */}
+                  <TestimonialCard
+                    testimonial={filteredTestimonials[leftIdx]}
+                    key={'card-left-' + leftIdx}
+                    variant="side"
+                  />
+                </div>
               </div>
             }
             {/* Center */}
             {filteredTestimonials.length > 0 &&
               <div
                 className={`
-                  relative z-20 w-full md:w-2/3 
+                  relative z-20 w-full md:w-4/5 
                   transition-all duration-500
-                  `}
+                `}
                 style={{
                   margin: "0 auto",
                 }}
               >
-                <TestimonialCard
-                  testimonial={filteredTestimonials[centerIdx]}
-                  key={'card-center-' + centerIdx}
-                />
+                <div className="mx-2 md:mx-4"> {/* Add horizontal margin */}
+                  <TestimonialCard
+                    testimonial={filteredTestimonials[centerIdx]}
+                    key={'card-center-' + centerIdx}
+                    variant="center"
+                  />
+                </div>
               </div>
             }
             {/* Right */}
@@ -293,30 +276,30 @@ const LovedbyOurCommunity = () => {
                 className={`
                   absolute right-0 top-1/2
                   -translate-y-1/2 
-                  w-2/3 md:w-1/2 ${cardClass('right')}
+                  w-11/12 md:w-3/4 ${cardClass('right')}
                   transition-all duration-500
                   ${containerMargin('right')}
-                  `}
+                `}
                 style={{ pointerEvents: "none" }}
               >
-                <TestimonialCard
-                  testimonial={filteredTestimonials[rightIdx]}
-                  blur
-                  key={'card-right-' + rightIdx}
-                />
+                <div className="mx-2 md:mx-4"> {/* Add left/right margin for space */}
+                  <TestimonialCard
+                    testimonial={filteredTestimonials[rightIdx]}
+                    key={'card-right-' + rightIdx}
+                    variant="side"
+                  />
+                </div>
               </div>
             }
             {/* If no testimonials */}
             {filteredTestimonials.length === 0 &&
               <div className="bg-[#fef9e7] rounded-2xl md:rounded-3xl p-6 md:p-10 relative overflow-hidden 
-                flex items-center justify-center min-h-[300px] text-gray-500 text-center border shadow w-full">
+                flex items-center justify-center min-h-[180px] text-gray-500 text-center border shadow w-full">
                 No testimonials available for this category.
               </div>
             }
           </div>
         </div>
-        {/* Dots/pagination */}
-      
       </div>
     </section>
   );
@@ -325,37 +308,71 @@ const LovedbyOurCommunity = () => {
 type TestimonialCardProps = {
   testimonial: Testimonial;
   blur?: boolean;
+  variant?: 'center' | 'side';
 };
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, blur = false }) => {
+// Give gap-4 among the card contents using flex/column gap-4 and matching padding
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, variant = 'center' }) => {
   if (!testimonial) return null;
+
+  let containerClass = "flex flex-col  items-center";
+  let styleOverrides: React.CSSProperties = {};
+  let quoteSize = "text-3xl md:text-4xl";
+  let imageClass = "w-12 h-12 md:w-14 md:h-14";
+  let profileImgSize = "(max-width: 768px) 48px, 56px";
+  let cardPadding = "p-3 md:p-5";
+  let minHeight = 150;
+  let maxWidth = '340px';
+
+  if (variant === 'center') {
+    cardPadding = "p-5 md:p-8";
+    minHeight = 220;
+    maxWidth = '440px';
+    quoteSize = "text-4xl md:text-6xl";
+    imageClass = "w-16 h-16 md:w-20 md:h-20";
+    profileImgSize = "(max-width: 768px) 64px, 80px";
+  } else {
+    cardPadding = "p-2 md:p-3";
+    minHeight = 125;
+    maxWidth = '290px';
+    quoteSize = "text-2xl md:text-3xl";
+    imageClass = "w-10 h-10 md:w-12 md:h-12";
+    profileImgSize = "(max-width: 768px) 40px, 48px";
+    styleOverrides = { filter: 'blur(0px)' };
+  }
+
   return (
     <div
       className={`
-        bg-[#fef9e7] rounded-2xl md:rounded-3xl p-5 md:p-10 relative overflow-hidden shadow transition-all duration-500
-        flex flex-col justify-center items-center
-        ${blur ? "opacity-70 blur-[2px] pointer-events-none select-none" : "opacity-100"}
-        `}
-      style={{ minHeight: 320, maxWidth: '440px', margin: 'auto' }}
+        bg-[#fef9e7] rounded-2xl  ${cardPadding} shadow transition-all duration-500 relative opacity-100 
+        ${containerClass}
+      `}
+      style={{
+        minHeight: minHeight,
+        maxWidth: maxWidth,
+        margin: 'auto',
+        ...styleOverrides,
+      }}
     >
       {/* Large Quotation Marks */}
-      <div className="absolute top-3 left-3 text-gray-300 text-5xl md:text-6xl font-serif leading-none select-none pointer-events-none">
+      <div className={`absolute top-2 left-2 text-gray-300 ${quoteSize} font-serif leading-none select-none pointer-events-none`}>
         &ldquo;
       </div>
-      <div className="absolute top-3 right-3 text-gray-300 text-5xl md:text-6xl font-serif leading-none select-none pointer-events-none">
+      <div className={`absolute top-2 right-2 text-gray-300 ${quoteSize} font-serif leading-none select-none pointer-events-none`}>
         &rdquo;
       </div>
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center">
+
+      {/* Content with gap-4 */}
+      <div className="relative z-10 flex flex-col items-center text-center gap-4">
         {/* Profile Picture and Info */}
-        <div className="flex flex-col items-center mb-2 md:mb-4">
-          <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-white border-2 border-white shadow-md mb-3">
+        <div className="flex flex-col items-center gap-2">
+          <div className={`relative ${imageClass} rounded-full overflow-hidden bg-white border-2 border-white shadow-md mb-0`}>
             <Image
               src={testimonial.image}
               alt={testimonial.name}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 64px, 80px"
+              sizes={profileImgSize}
             />
           </div>
           <h3 className="text-base md:text-lg font-bold text-black mb-0">
@@ -366,19 +383,27 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, blur = f
           </p>
         </div>
         {/* Testimonial Text */}
-        <p className="text-xs md:text-sm text-black leading-relaxed mb-6 md:mb-8 text-center">
+        <p className="text-xs md:text-sm text-black leading-relaxed mb-0 text-center">
           {testimonial.text}
         </p>
         {/* Google Logo and Rating */}
         <div className="flex items-center justify-center gap-1">
-          <span className="text-lg md:text-xl font-bold text-[#4285F4]">G</span>
+          <Image
+            src="/assets/google.png"
+            alt="Google"
+            width={variant === "center" ? 20 : 16}
+            height={variant === "center" ? 20 : 16}
+            className="inline-block mr-1 align-middle"
+          />
           <div className="flex gap-0.5">
             {[...Array(testimonial.rating)].map((_, i) => (
-              <FaStar key={i} className="text-[#FFC107] text-sm md:text-base" />
+              <MdOutlineStar key={i} className={`text-[#FFC107] ${variant === "center" ? "text-xs md:text-base" : "text-xs"}`} />
             ))}
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 };
