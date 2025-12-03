@@ -11,12 +11,12 @@ import OurAchievements from "@/src/Components/sections/Home/OurAchievements";
 import ExploreEudika from "@/src/Components/sections/Home/ExploreEudika";
 import LovedbyOurCommunity from "@/src/Components/sections/Home/LovedbyOurCommunity";
 import OurServiceCategories from "@/src/Components/sections/Home/OurServiceCategories";
-import TurosCount from "@/src/Components/sections/Home/TurosCount";
-
+import TutorsCount from "@/src/Components/sections/Home/TutorsCount";
+import SchoolsColleges from "@/src/Components/sections/Home/SchoolsColleges";
 export default function Home() {
   return (
     <div className="">
-      <TurosCount></TurosCount>
+      <TutorsCount></TutorsCount>
     <OurProTutors></OurProTutors>
     <HowEudikaWorks></HowEudikaWorks>
     <StartTeachingToday></StartTeachingToday>
@@ -24,6 +24,7 @@ export default function Home() {
     <SubjectTutorsDiscover></SubjectTutorsDiscover>
     <FindTutorsNearby></FindTutorsNearby>
     <EudikaUniqueLearning></EudikaUniqueLearning>
+    <SchoolsColleges></SchoolsColleges>
     <TrustedLearningBenefits></TrustedLearningBenefits>
     <OurServiceCategories></OurServiceCategories>
     <LovedbyOurCommunity></LovedbyOurCommunity>

@@ -141,7 +141,7 @@ const CountUpNumber: React.FC<{ statistic: Statistic; isGrid2?: boolean }> = ({ 
   );
 };
 
-export default function TurosCount() {
+export default function TutorsCount() {
   // "grid-cols-2" will be active on mobile (<md)
   // We use this to set element's bg: #fbfbf7 on grid 2 and transparent on md+
   // Added p-2 to CountUpNumber for mobile bg, md:p-0 for md+ transparent

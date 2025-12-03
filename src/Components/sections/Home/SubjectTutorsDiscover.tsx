@@ -21,7 +21,8 @@ interface SubjectCard {
   id: string;
   name: string;
   tutorCount: string;
-  icon: React.ReactNode;
+  image?: string;
+  icon?: React.ReactNode;
 }
 
 const subjects: SubjectCard[] = [
@@ -29,25 +30,25 @@ const subjects: SubjectCard[] = [
     id: 'english-medium',
     name: 'English Medium Tutors',
     tutorCount: '1,718',
-    icon: <MdMenuBook className="text-2xl md:text-3xl" />,
+    image: '/assets/row-1-english-medium.png',
   },
   {
     id: 'public-university',
     name: 'Public University Tutors',
     tutorCount: '8,163',
-    icon: <FaBookOpen className="text-2xl md:text-3xl" />,
+    image: '/assets/row-1-public-tutors.png',
   },
   {
     id: 'maths',
     name: 'Maths Tutors',
     tutorCount: '16,434',
-    icon: <PiMathOperations className="text-2xl md:text-3xl" />,
+    image: '/assets/row-1-math-tutors.png',
   },
   {
     id: 'english-1',
     name: 'English Tutors',
     tutorCount: '12,829',
-    icon: <BsSquare className="text-2xl md:text-3xl" />,
+    image: '/assets/row-1-english-tutors.png',
   },
   {
     id: 'art-1',
@@ -165,49 +166,70 @@ const SubjectTutorsDiscover = () => {
             {subjects.slice(0, 4).map((subject) => (
               <div
                 key={subject.id}
-                className="mx-2 md:mx-3 shrink-0 w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]"
+                className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
-                <div className="bg-[#fef9e7] hover:bg-[#fef3c7] 
-                 rounded-2xl  p-2 transition-all cursor-pointer 
+                <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
+                 rounded-2xl  p-4 transition-all cursor-pointer 
                  h-full flex  items-center justify-between
                  hover:scale-105 hover:shadow-lg">
-                  {/* Icon */}
-                  <div className=" text-black">
-                    {subject.icon}
+                  <div className="flex items-center gap-5">
+                    {/* Image instead of Icon */}
+                    <div className="w-10 h-10 flex items-center justify-center">
+                      <img
+                        src={subject.image || '/assets/row-1-english-medium.png'}
+                        alt={subject.name}
+                        className="object-contain w-full h-full"
+                      />
+                    </div>
+                    {/* Subject Name */}
+                    <div>
+                      <h3 className="text-xs md:text-sm font-semibold text-black ">
+                        {subject.name}
+                      </h3>
+                      {/* Tutor Count */}
+                      <p className="text-[10px] md:text-xs text-black ">
+                        {subject.tutorCount} Tutors
+                      </p>
+                    </div>
                   </div>
-                  {/* Subject Name */}
-                <div>
-                <h3 className="text-sm md:text-base font-medium text-black ">
-                    {subject.name}
-                  </h3>
-                  {/* Tutor Count */}
-                  <p className="text-xs md:text-sm text-black ">
-                    {subject.tutorCount} Tutors
-                  </p>
-                </div>
-
                 </div>
               </div>
             ))}
             {/* Duplicate for seamless loop */}
             {subjects.slice(0, 4).map((subject) => (
               <div
-                key={`${subject.id}-dup`}
-                className="mx-2 md:mx-3 shrink-0 w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]"
+                key={subject.id + '-dup'}
+                className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
-                <div className="bg-[#fef9e7] hover:bg-[#fef3c7] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center min-h-[180px] md:min-h-[200px] hover:scale-105 hover:shadow-lg">
-                  <div className="mb-3 md:mb-4 text-black">
-                    {subject.icon}
+                <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
+                 rounded-2xl  p-4 transition-all cursor-pointer 
+                 h-full flex  items-center justify-between
+                 hover:scale-105 hover:shadow-lg">
+                  <div className="flex items-center gap-5">
+                    {/* Image instead of Icon */}
+                    <div className="w-10 h-10 flex items-center justify-center">
+                      <img
+                        src={subject.image || '/assets/row-1-english-medium.png'}
+                        alt={subject.name}
+                        className="object-contain w-full h-full"
+                      />
+                    </div>
+                    {/* Subject Name */}
+                    <div>
+                      <h3 className="text-xs md:text-sm font-semibold text-black ">
+                        {subject.name}
+                      </h3>
+                      {/* Tutor Count */}
+                      <p className="text-[10px] md:text-xs text-black ">
+                        {subject.tutorCount} Tutors
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-black mb-2">
-                    {subject.name}
-                  </h3>
-                  <p className="text-xs md:text-sm text-black font-medium">
-                    {subject.tutorCount} Tutors
-                  </p>
                 </div>
               </div>
             ))}
+
+
           </MarqueeWithBlur>
 
           {/* Row 2 with Blur */}

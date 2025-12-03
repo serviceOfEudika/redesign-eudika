@@ -137,7 +137,7 @@ const HowEudikaWorks = () => {
               onClick={() => setSelectedUserType(group.id)}
               className={`
                 relative rounded-full px-4 py-2
-                md:text-sm text-xs font-medium
+                text-[10px] md:text-xs font-medium
                 transition-all duration-200 cursor-pointer
                 ${
                   selectedUserType === group.id

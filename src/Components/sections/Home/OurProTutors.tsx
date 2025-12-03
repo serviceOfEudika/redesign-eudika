@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FaMapMarkerAlt, FaClock, FaGraduationCap, FaEye, FaUser } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaGraduationCap, FaEye, FaUser } from 'react-icons/fa';
 import { HiArrowUpRight } from 'react-icons/hi2';
 import ShieldIconWithText from '@/src/Components/common/ShieldIconWithText';
 import Image from 'next/image';
@@ -119,7 +119,6 @@ const OurProTutors = () => {
 
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-[#fafafa]">
-      
       <div className="max-w-6xl mx-auto px-4 md:px-13">
         {/* Header Section */}
         <div className="text-center mb-10 md:mb-12 lg:mb-16">
@@ -147,7 +146,7 @@ const OurProTutors = () => {
           {tutors.map((tutor) => (
             <div
               key={tutor.id}
-              className="bg-white rounded-3xl p-4"
+              className="bg-white rounded-3xl p-4 flex flex-col w-full h-full"
             >
               {/* Profile Image Section */}
               <div className="relative ">
@@ -156,16 +155,13 @@ const OurProTutors = () => {
                   alt={tutor.name + " profile image"}
                   width={320}
                   height={320}
-                  className=" object-cover rounded-2xl mb-2"
+                  className=" object-cover rounded-2xl mb-2 w-full"
                   priority
                 />
 
-    
                 {/* Share Icon Button */}
                 <button
-                  className="absolute top-3 right-3
-                   w-8 h-8 bg-white rounded-full
-                    flex items-center justify-center shadow-sm transition-colors"
+                  className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm transition-colors"
                   aria-label="Share"
                   type="button"
                 >
@@ -173,7 +169,7 @@ const OurProTutors = () => {
                 </button>
 
                 {/* Experience Badges Overlay */}
-                <div className="absolute bottom-2 text-black left-2 right-3 flex flex-col gap-1">
+                <div className="absolute bottom-4 text-black left-2 right-3 flex flex-col gap-1">
                   <div className="bg-[#f7ed92] rounded-full py-1 px-2 flex w-fit items-center gap-1">
                     <Image
                       src={batch_1}
@@ -202,7 +198,7 @@ const OurProTutors = () => {
               </div>
 
               {/* Tutor Info Section */}
-              <div>
+              <div className="flex flex-col flex-1 min-h-0">
                 {/* Name and Verification */}
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
@@ -216,7 +212,6 @@ const OurProTutors = () => {
                       height={16}
                       className="h-2.5 w-2.5 md:h-3 md:w-3 object-contain"
                     />
-
                   </div>
                   <FaArrowUp className='rotate-45 text-black' />
                 </div>
@@ -225,19 +220,17 @@ const OurProTutors = () => {
                 <div className="flex items-center justify-between ">
 
                   <span className=" text-black flex items-center gap-1">
-
                     <p className='text-sm md:text-lg font-bold'>{tutor.price} </p>
                     <p className='text-[10px] text-[#000000]'>/ Month</p>
                     <Image src={quesion} alt="money Badge" width={16} height={16}
                       className="w-2 h-2 md:h-2 md:w-2 object-contain self-start" />
-
                   </span>
 
                   <span className="bg-[#f7ed92] text-black text-[10px]
                   md:text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
                     <Image src={king} alt="king Badge" width={16} height={16}
                       className="w-3 h-3 md:h-3.5 md:w-3.5 object-contain" />
-                      <p> Pro</p>
+                    <p> Pro</p>
                   </span>
 
                 </div>
@@ -246,28 +239,22 @@ const OurProTutors = () => {
                 <p className="text-[10px]  text-[#000000] flex justify-between my-2">
                   {tutor.subjects.join(', ')}
                   <div className="flex items-center gap-1 text-gray-600">
-
                     <div className="flex items-center gap-0.5">
                       <Image src={batch_1} alt="king Badge" width={16} height={16}
                         className="w-2 h-2  object-contain" />
                       <span>{tutor.experience}</span>
                     </div>
-
                     <div className="flex items-center gap-0.5">
                       <FaMapMarkerAlt className="w-2 h-2" />
                       <span>{tutor.location}</span>
                     </div>
-
-
-
                   </div>
                 </p>
 
                 {/* Location and Experience */}
 
-
                 {/* Education */}
-                <div className="flex flex-col justify-between h-full">
+                <div className="flex flex-col justify-between h-full flex-1">
                   {/* Education */}
                   <div className="space-y-1.5">
                     {tutor.education.map((edu, index) => (
@@ -280,28 +267,30 @@ const OurProTutors = () => {
                       </div>
                     ))}
                   </div>
+                  {/* Empty fragment for possible future spacing */}
+                  {/* Action Buttons are outside this */}
+                </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 mt-3">
-                    <button
-                      className="flex-1 bg-[#edc623] hover:bg-yellow-500
-                        text-black  rounded-full text-[9px] md:text-[11px]
-                        flex items-center justify-center gap-1 transition-colors "
-                      type="button"
-                    >
-                      <FaEye className="md:w-3 md:h-3 w-2 h-2" />
-                      <span>View</span>
-                    </button>
-                    <button
-                      className="flex-1 bg-black hover:bg-gray-800
-                        text-white  py-1  rounded-full flex items-center 
-                        justify-center gap-1 transition-colors  text-[9px] md:text-[11px]"
-                      type="button"
-                    >
-                      <FaUser className="md:w-3 md:h-3 w-2 h-2" />
-                      <span>Request</span>
-                    </button>
-                  </div>
+                {/* BUTTONS STICK TO END */}
+                <div className="flex gap-2 button-container mt-6" >
+                  <button
+                    className="flex-1 bg-[#edc623] hover:bg-yellow-500
+                      text-black py-1  rounded-full text-[9px] md:text-[11px] cursor-pointer
+                      flex items-center justify-center gap-1 transition-colors "
+                    type="button"
+                  >
+                    <FaEye className="md:w-3 md:h-3 w-2 h-2" />
+                    <span>View</span>
+                  </button>
+                  <button
+                    className="flex-1 bg-black hover:bg-gray-800
+                      text-white  py-1  rounded-full flex items-center cursor-pointer
+                      justify-center gap-1 transition-colors  text-[9px] md:text-[11px]"
+                    type="button"
+                  >
+                    <FaUser className="md:w-3 md:h-3 w-2 h-2" />
+                    <span>Request</span>
+                  </button>
                 </div>
 
               </div>
@@ -313,13 +302,12 @@ const OurProTutors = () => {
         <div className="text-center">
           <button
             className="bg-[#edc623] hover:bg-yellow-500
-             text-black  px-4 py-2 rounded-full flex items-center 
+             text-black  px-4 py-2 rounded-full flex items-center cursor-pointer
              justify-center gap-2 mx-auto transition-colors text-xs md:text-sm  shadow-md hover:shadow-lg"
             type="button"
           >
             <span>View More</span>
             <HiArrowUpRight className="text-base rotate-45" />
-             
           </button>
         </div>
       </div>
