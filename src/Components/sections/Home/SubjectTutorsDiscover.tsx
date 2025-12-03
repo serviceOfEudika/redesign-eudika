@@ -54,49 +54,49 @@ const subjects: SubjectCard[] = [
     id: 'art-1',
     name: 'Art Tutors',
     tutorCount: '2,310',
-    icon: <FaPalette className="text-2xl md:text-3xl" />,
+    image: '/assets/row-1-english-medium.png',
   },
   {
     id: 'science-1',
     name: 'Science Tutors',
     tutorCount: '5,602',
-    icon: <FaFlask className="text-2xl md:text-3xl" />,
+    image: '/assets/row-2-science-tutors.png',
   },
   {
     id: 'english-2',
     name: 'English Tutors',
     tutorCount: '8,220',
-    icon: <FaBookOpen className="text-2xl md:text-3xl" />,
+    image: '/assets/row-2-english-tutors.png',
   },
   {
     id: 'history',
     name: 'History Tutors',
     tutorCount: '3,145',
-    icon: <FaHistory className="text-2xl md:text-3xl" />,
+    image: '/assets/row-2-history-tutors.png',
   },
   {
     id: 'art-2',
     name: 'Art Tutors',
     tutorCount: '2,310',
-    icon: <MdMenuBook className="text-2xl md:text-3xl" />,
+    image: '/assets/row-1-english-medium.png',
   },
   {
     id: 'science-2',
     name: 'Science Tutors',
     tutorCount: '12,567',
-    icon: <MdScience className="text-2xl md:text-3xl" />,
+    image: '/assets/row-3-science-tutors.png',
   },
   {
     id: 'english-3',
     name: 'English Tutors',
     tutorCount: '9,874',
-    icon: <FaGlobe className="text-2xl md:text-3xl" />,
+    image: '/assets/row-3-english-tutors.png',
   },
   {
     id: 'programming',
     name: 'Programming Tutors',
     tutorCount: '5,432',
-    icon: <FaCode className="text-2xl md:text-3xl" />,
+    image: '/assets/row-3-progamming-tutors.png',
   },
 ];
 
@@ -143,18 +143,19 @@ const SubjectTutorsDiscover = () => {
             <ShieldIconWithText text="suject" iconSize="sm" textSize="sm" />
           </div>
           {/* Main Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-4">
             Subject Tutors Discover
           </h2>
 
           {/* Subtitle */}
-          <p className="mx-auto mt-4 max-w-2xl text-xs md:text-sm text-black">
-            Eudlika offers diverse tutoring options to suit every student&apos;s learning style.
+          <p className="mx-auto mt-4  text-xs md:text-sm text-black">
+            Eudlika offers diverse tutoring options to suit every
+             <br /> student&apos;s learning style.
           </p>
         </div>
 
         {/* Subject Cards Marquee - Multiple Rows for Grid Effect */}
-        <div className="mt-10 md:mt-16 space-y-4 md:space-y-6">
+        <div className="mt-10 space-y-3.5 ">
           {/* Row 1 with Blur */}
           <MarqueeWithBlur
             speed={40}
@@ -163,23 +164,23 @@ const SubjectTutorsDiscover = () => {
             direction="left"
             className="overflow-hidden"
           >
-            {subjects.slice(0, 4).map((subject) => (
+             {subjects.slice(0, 4).map((subject) => (
               <div
-                key={subject.id}
+                key={subject.id + '-dup'}
                 className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
                 <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
                  rounded-2xl  p-4 transition-all cursor-pointer 
                  h-full flex  items-center justify-between
                  hover:scale-105 hover:shadow-lg">
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-center gap-2">
                     {/* Image instead of Icon */}
                     <div className="w-10 h-10 flex items-center justify-center">
-                      <img
-                        src={subject.image || '/assets/row-1-english-medium.png'}
-                        alt={subject.name}
-                        className="object-contain w-full h-full"
-                      />
+                        <img
+                          src={subject.image || '/assets/row-1-english-medium.png'}
+                          alt={subject.name}
+                          className="object-contain w-5 h-5"
+                        />
                     </div>
                     {/* Subject Name */}
                     <div>
@@ -205,14 +206,14 @@ const SubjectTutorsDiscover = () => {
                  rounded-2xl  p-4 transition-all cursor-pointer 
                  h-full flex  items-center justify-between
                  hover:scale-105 hover:shadow-lg">
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-center gap-2">
                     {/* Image instead of Icon */}
                     <div className="w-10 h-10 flex items-center justify-center">
-                      <img
-                        src={subject.image || '/assets/row-1-english-medium.png'}
-                        alt={subject.name}
-                        className="object-contain w-full h-full"
-                      />
+                        <img
+                          src={subject.image || '/assets/row-1-english-medium.png'}
+                          alt={subject.name}
+                          className="object-contain w-5 h-5"
+                        />
                     </div>
                     {/* Subject Name */}
                     <div>
@@ -240,39 +241,68 @@ const SubjectTutorsDiscover = () => {
             direction="right"
             className="overflow-hidden"
           >
-            {subjects.slice(4, 8).map((subject) => (
+             {subjects.slice(4, 8).map((subject) => (
               <div
-                key={subject.id}
-                className="mx-2 md:mx-3 shrink-0 w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]"
+                key={subject.id + '-dup'}
+                className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
-                <div className="bg-[#fef9e7] hover:bg-[#fef3c7] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center min-h-[180px] md:min-h-[200px] hover:scale-105 hover:shadow-lg">
-                  <div className="mb-3 md:mb-4 text-black">
-                    {subject.icon}
+                <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
+                 rounded-2xl  p-4 transition-all cursor-pointer 
+                 h-full flex  items-center justify-between
+                 hover:scale-105 hover:shadow-lg">
+                  <div className="flex items-center gap-2">
+                    {/* Image instead of Icon */}
+                    <div className="w-10 h-10 flex items-center justify-center">
+                        <img
+                          src={subject.image || '/assets/row-1-english-medium.png'}
+                          alt={subject.name}
+                          className="object-contain w-5 h-5"
+                        />
+                    </div>
+                    {/* Subject Name */}
+                    <div>
+                      <h3 className="text-xs md:text-sm font-semibold text-black ">
+                        {subject.name}
+                      </h3>
+                      {/* Tutor Count */}
+                      <p className="text-[10px] md:text-xs text-black ">
+                        {subject.tutorCount} Tutors
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-black mb-2">
-                    {subject.name}
-                  </h3>
-                  <p className="text-xs md:text-sm text-black font-medium">
-                    {subject.tutorCount} Tutors
-                  </p>
                 </div>
               </div>
             ))}
+            {/* Duplicate for seamless loop */}
             {subjects.slice(4, 8).map((subject) => (
               <div
-                key={`${subject.id}-dup`}
-                className="mx-2 md:mx-3 shrink-0 w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]"
+                key={subject.id + '-dup'}
+                className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
-                <div className="bg-[#fef9e7] hover:bg-[#fef3c7] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center min-h-[180px] md:min-h-[200px] hover:scale-105 hover:shadow-lg">
-                  <div className="mb-3 md:mb-4 text-black">
-                    {subject.icon}
+                <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
+                 rounded-2xl  p-4 transition-all cursor-pointer 
+                 h-full flex  items-center justify-between
+                 hover:scale-105 hover:shadow-lg">
+                  <div className="flex items-center gap-2">
+                    {/* Image instead of Icon */}
+                    <div className="w-10 h-10 flex items-center justify-center">
+                        <img
+                          src={subject.image || '/assets/row-1-english-medium.png'}
+                          alt={subject.name}
+                          className="object-contain w-5 h-5"
+                        />
+                    </div>
+                    {/* Subject Name */}
+                    <div>
+                      <h3 className="text-xs md:text-sm font-semibold text-black ">
+                        {subject.name}
+                      </h3>
+                      {/* Tutor Count */}
+                      <p className="text-[10px] md:text-xs text-black ">
+                        {subject.tutorCount} Tutors
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-black mb-2">
-                    {subject.name}
-                  </h3>
-                  <p className="text-xs md:text-sm text-black font-medium">
-                    {subject.tutorCount} Tutors
-                  </p>
                 </div>
               </div>
             ))}
@@ -286,39 +316,68 @@ const SubjectTutorsDiscover = () => {
             direction="left"
             className="overflow-hidden"
           >
-            {subjects.slice(8, 12).map((subject) => (
+              {subjects.slice(8, 12).map((subject) => (
               <div
-                key={subject.id}
-                className="mx-2 md:mx-3 shrink-0 w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]"
+                key={subject.id + '-dup'}
+                className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
-                <div className="bg-[#fef9e7] hover:bg-[#fef3c7] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center min-h-[180px] md:min-h-[200px] hover:scale-105 hover:shadow-lg">
-                  <div className="mb-3 md:mb-4 text-black">
-                    {subject.icon}
+                <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
+                 rounded-2xl  p-4 transition-all cursor-pointer 
+                 h-full flex  items-center justify-between
+                 hover:scale-105 hover:shadow-lg">
+                  <div className="flex items-center gap-2">
+                    {/* Image instead of Icon */}
+                    <div className="w-10 h-10 flex items-center justify-center">
+                        <img
+                          src={subject.image || '/assets/row-1-english-medium.png'}
+                          alt={subject.name}
+                          className="object-contain w-5 h-5"
+                        />
+                    </div>
+                    {/* Subject Name */}
+                    <div>
+                      <h3 className="text-xs md:text-sm font-semibold text-black ">
+                        {subject.name}
+                      </h3>
+                      {/* Tutor Count */}
+                      <p className="text-[10px] md:text-xs text-black ">
+                        {subject.tutorCount} Tutors
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-black mb-2">
-                    {subject.name}
-                  </h3>
-                  <p className="text-xs md:text-sm text-black font-medium">
-                    {subject.tutorCount} Tutors
-                  </p>
                 </div>
               </div>
             ))}
+            {/* Duplicate for seamless loop */}
             {subjects.slice(8, 12).map((subject) => (
               <div
-                key={`${subject.id}-dup`}
-                className="mx-2 md:mx-3 shrink-0 w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px]"
+                key={subject.id + '-dup'}
+                className="mx-2  shrink-0 w-[200px] md:w-[260px] "
               >
-                <div className="bg-[#fef9e7] hover:bg-[#fef3c7] rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center min-h-[180px] md:min-h-[200px] hover:scale-105 hover:shadow-lg">
-                  <div className="mb-3 md:mb-4 text-black">
-                    {subject.icon}
+                <div className="bg-[#fdf9e9] hover:bg-[#fef3c7] 
+                 rounded-2xl  p-4 transition-all cursor-pointer 
+                 h-full flex  items-center justify-between
+                 hover:scale-105 hover:shadow-lg">
+                  <div className="flex items-center gap-2">
+                    {/* Image instead of Icon */}
+                    <div className="w-10 h-10 flex items-center justify-center">
+                        <img
+                          src={subject.image || '/assets/row-1-english-medium.png'}
+                          alt={subject.name}
+                          className="object-contain w-5 h-5"
+                        />
+                    </div>
+                    {/* Subject Name */}
+                    <div>
+                      <h3 className="text-xs md:text-sm font-semibold text-black ">
+                        {subject.name}
+                      </h3>
+                      {/* Tutor Count */}
+                      <p className="text-[10px] md:text-xs text-black ">
+                        {subject.tutorCount} Tutors
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-black mb-2">
-                    {subject.name}
-                  </h3>
-                  <p className="text-xs md:text-sm text-black font-medium">
-                    {subject.tutorCount} Tutors
-                  </p>
                 </div>
               </div>
             ))}
@@ -326,15 +385,15 @@ const SubjectTutorsDiscover = () => {
         </div>
 
         {/* View More Button */}
-        <div className="text-center mt-8 md:mt-12">
+        <div className="text-center mt-8">
           <button
-            className="bg-[#edc623] hover:bg-yellow-500 cursor-pointer 
-              text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full flex items-center 
-              gap-2 mx-auto transition-colors text-sm md:text-base shadow-md hover:shadow-lg"
+            className="bg-[#edc623] hover:bg-yellow-500
+             text-black  px-4 py-2 rounded-full flex items-center cursor-pointer
+             justify-center gap-2 mx-auto transition-colors text-xs md:text-sm  shadow-md hover:shadow-lg"
             type="button"
           >
             <span>View More</span>
-            <HiArrowUpRight className="text-base md:text-lg" />
+            <HiArrowUpRight className="text-base rotate-45" />
           </button>
         </div>
       </div>
