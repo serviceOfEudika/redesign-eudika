@@ -167,6 +167,7 @@ const HowEudikaWorks = () => {
             </button>
           ))}
         </div>
+
       </div>
 
       {/* Feature Cards with AnimatePresence */}

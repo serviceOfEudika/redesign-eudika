@@ -4,6 +4,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import ShieldIconWithText from '@/src/Components/common/ShieldIconWithText';
 import { MdOutlineStar } from 'react-icons/md';
+import { motion } from 'framer-motion';
 
 interface Testimonial {
   id: string;
@@ -140,8 +141,8 @@ const LovedbyOurCommunity = () => {
   function containerMargin(pos: 'left' | 'center' | 'right') {
     // Add extra spacing among cards horizontally
     // Increase the translate-x values for more separation between cards
-    if (pos === 'left') return "translate-x-[-55%] md:translate-x-[-58%]"; // increased from -42%/-44%
-    if (pos === 'right') return "translate-x-[55%] md:translate-x-[58%]";   // increased from 42%/44%
+    if (pos === 'left') return "translate-x-[-45%] md:translate-x-[-48%]";
+    if (pos === 'right') return "translate-x-[45%] md:translate-x-[48%]";
     return "";
   }
 
@@ -178,39 +179,44 @@ const LovedbyOurCommunity = () => {
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
-          {filterOptions.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => setSelectedFilter(option.id)}
-              className={`
-                relative rounded-full px-4 md:px-6 py-2 md:py-2.5
-                text-xs md:text-sm font-medium
-                transition-all duration-200 cursor-pointer
-                ${selectedFilter === option.id
-                  ? 'text-black'
-                  : 'text-black border border-gray-300 hover:border-gray-400 bg-white'
-                }
-              `}
-              style={{
-                WebkitTapHighlightColor: 'transparent',
-              }}
-              type="button"
-            >
-              {selectedFilter === option.id && (
-                <span
-                  className="absolute inset-0 z-10 bg-[#edc623] rounded-full"
+        {/* Animated Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 relative">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 relative">
+            {/* Fallback is still just a map, but animate background using motion.div */}
+            {filterOptions.map((option) => {
+              const isSelected = selectedFilter === option.id;
+              return (
+                <motion.button
+                  key={option.id}
+                  onClick={() => setSelectedFilter(option.id)}
+                  className={`
+                    relative rounded-full px-4 md:px-6 py-2 md:py-2.5
+                    text-xs md:text-sm font-medium
+                    transition-all duration-200 cursor-pointer
+                    overflow-hidden
+                    ${isSelected
+                      ? 'text-black'
+                      : 'text-black border border-gray-300 hover:border-gray-400 bg-white'
+                    }
+                  `}
                   style={{
-                    transition: "background 0.3s",
+                    WebkitTapHighlightColor: 'transparent',
                   }}
-                />
-              )}
-              <span className="relative z-20">
-                {option.label}
-              </span>
-            </button>
-          ))}
+                  type="button"
+                  whileTap={{ scale: 0.93 }}
+                >
+                  {isSelected && (
+                    <motion.span
+                      layoutId="selectedFilterBg"
+                      className="absolute inset-0 z-10 bg-[#edc623] rounded-full"
+                      transition={{ type: "spring", bounce: 0.18, duration: 0.5 }}
+                    />
+                  )}
+                  <span className="relative z-20">{option.label}</span>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Testimonial Carousel */}
@@ -241,7 +247,7 @@ const LovedbyOurCommunity = () => {
                 `}
                 style={{ pointerEvents: "none" }}
               >
-                <div className="mx-2 md:mx-4"> {/* Add left/right margin for extra horizontal space */}
+                <div className=""> {/* Add left/right margin for extra horizontal space */}
                   <TestimonialCard
                     testimonial={filteredTestimonials[leftIdx]}
                     key={'card-left-' + leftIdx}
@@ -261,7 +267,7 @@ const LovedbyOurCommunity = () => {
                   margin: "0 auto",
                 }}
               >
-                <div className="mx-2 md:mx-4"> {/* Add horizontal margin */}
+                <div className="mx-2 "> {/* Add horizontal margin */}
                   <TestimonialCard
                     testimonial={filteredTestimonials[centerIdx]}
                     key={'card-center-' + centerIdx}
@@ -282,7 +288,7 @@ const LovedbyOurCommunity = () => {
                 `}
                 style={{ pointerEvents: "none" }}
               >
-                <div className="mx-2 md:mx-4"> {/* Add left/right margin for space */}
+                <div className=""> {/* Add left/right margin for space */}
                   <TestimonialCard
                     testimonial={filteredTestimonials[rightIdx]}
                     key={'card-right-' + rightIdx}
@@ -311,7 +317,6 @@ type TestimonialCardProps = {
   variant?: 'center' | 'side';
 };
 
-// Give gap-4 among the card contents using flex/column gap-4 and matching padding
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, variant = 'center' }) => {
   if (!testimonial) return null;
 
@@ -344,7 +349,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, variant 
   return (
     <div
       className={`
-        bg-[#fef9e7] rounded-2xl  ${cardPadding} shadow transition-all duration-500 relative opacity-100 
+        bg-[#fdf9e9] rounded-2xl  ${cardPadding} shadow transition-all duration-500 relative opacity-100 
         ${containerClass}
       `}
       style={{
@@ -355,18 +360,30 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, variant 
       }}
     >
       {/* Large Quotation Marks */}
-      <div className={`absolute top-2 left-2 text-gray-300 ${quoteSize} font-serif leading-none select-none pointer-events-none`}>
-        &ldquo;
-      </div>
-      <div className={`absolute top-2 right-2 text-gray-300 ${quoteSize} font-serif leading-none select-none pointer-events-none`}>
-        &rdquo;
-      </div>
+     
 
       {/* Content with gap-4 */}
-      <div className="relative z-10 flex flex-col items-center text-center gap-4">
+      <div className="relative z-10 flex flex-col items-center text-center gap-3">
         {/* Profile Picture and Info */}
-        <div className="flex flex-col items-center gap-2">
-          <div className={`relative ${imageClass} rounded-full overflow-hidden bg-white border-2 border-white shadow-md mb-0`}>
+        <Image
+          src="/assets/coma-left.png"
+          alt="Decorative left quotation"
+          width={32}
+          height={32}
+          className="absolute -top-5 left-10 md:left-5  w-10 h-10 md:w-20 md:h-20"
+        />
+        <Image
+          src="/assets/coma-right.png"
+          alt="Decorative right quotation"
+          width={32}
+          height={32}
+          className="absolute top-10 right-10 md:right-5 w-10 h-10 md:w-20 md:h-20"
+        />
+        <div className="flex flex-col items-center gap-2 relative">
+   
+          
+          <div className={`relative ${imageClass} rounded-full overflow-hidden
+           bg-white border-2 border-white shadow-md mb-0`}>
             <Image
               src={testimonial.image}
               alt={testimonial.name}
@@ -375,10 +392,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, variant 
               sizes={profileImgSize}
             />
           </div>
-          <h3 className="text-base md:text-lg font-bold text-black mb-0">
+          <h3 className="text-sm md:text-base font-bold text-black mb-0">
             {testimonial.name}
           </h3>
-          <p className="text-xs md:text-sm text-[#666666] font-medium">
+          <p className="text-[10px] md:text-xs text-black font-medium">
             {testimonial.role}
           </p>
         </div>
@@ -402,8 +419,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, variant 
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };

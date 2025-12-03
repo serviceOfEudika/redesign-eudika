@@ -134,7 +134,7 @@ const MarqueeWithBlur: React.FC<React.ComponentProps<typeof Marquee>> = ({ child
 
 const SubjectTutorsDiscover = () => {
   return (
-    <section className="bg-white py-10 md:py-20">
+    <section className="bg-white ">
       <div className="mx-auto max-w-6xl px-4 md:px-13">
         {/* Header Section */}
         <div className="text-center">

@@ -35,7 +35,7 @@ const features: FeatureCard[] = [
 
 const EudikaUniqueLearning = () => {
   return (
-    <section className="bg-[#fafafa]  py-10 md:py-20">
+    <section className="bg-[#fafafa] md:bg-white ">
       <div className="mx-auto max-w-6xl px-4 md:px-13">
         {/* Header Section */}
         <div className="text-center mb-8 md:mb-12">
@@ -45,12 +45,12 @@ const EudikaUniqueLearning = () => {
           </div>
 
           {/* Main Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-4">
             Eudika: Unique Learning
           </h2>
 
           {/* Descriptive Paragraph */}
-          <p className="mx-auto mt-4 max-w-2xl text-xs md:text-sm text-[#4a4a4a]">
+          <p className="mx-auto mt-4 max-w-2xl text-xs md:text-sm text-black">
             Discover a wide selection of experienced local tutors ready to
             <span className='hidden md:inline'><br /></span> support your unique learning journey.
           </p>
@@ -61,7 +61,7 @@ const EudikaUniqueLearning = () => {
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 transition-all cursor-pointer hover:shadow-lg relative"
+              className="bg-white md:bg-[#fafafa]  rounded-xl md:rounded-2xl p-4 md:p-6 transition-all cursor-pointer hover:shadow-lg relative"
             >
               {/* Yellow Circular Icon with Question Mark */}
               <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-[#edc623] rounded-full mb-4">

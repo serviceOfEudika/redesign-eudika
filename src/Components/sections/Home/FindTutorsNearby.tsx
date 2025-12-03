@@ -49,7 +49,7 @@ const FindTutorsNearby = () => {
           </div>
 
           {/* Main Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-4">
             Find Tutors Nearby
           </h2>
 
@@ -63,7 +63,7 @@ const FindTutorsNearby = () => {
         {/* Main Content: Map and City Cards */}
         <div className="flex flex-col md:flex-row items-center gap-10 justify-between">
           {/* Left Section: Bangladesh Map */}
-          <div className=" w-full">
+          <div className=" w-full md:relative md:-left-12">
             <div className="relative w-full aspect-square max-w-full
              h-auto rounded-2xl md:rounded-3xl overflow-hidden ">
               <Image
@@ -107,19 +107,19 @@ const FindTutorsNearby = () => {
             </div>
 
             {/* View More Location Button */}
-            <div className="w-full flex justify-center">
-              <button
-                className="bg-[#edc623] hover:bg-yellow-500 cursor-pointer 
-                  text-black px-6 md:px-8 py-2.5 md:py-3 rounded-full flex items-center 
-                  gap-2 w-fit justify-center transition-colors text-sm
-                   md:text-base shadow-md hover:shadow-lg"
-                type="button"
-              >
-                <span>View More Location</span>
-                <HiArrowUpRight className="text-base md:text-lg rotate-45" />
-              </button>
+           
 
-            </div>
+            <div className="text-center mt-8">
+          <button
+            className="bg-[#edc623] hover:bg-yellow-500
+             text-black  px-4 py-2 rounded-full flex items-center cursor-pointer
+             justify-center gap-2 mx-auto transition-colors text-xs md:text-sm  shadow-md hover:shadow-lg"
+            type="button"
+          >
+            <span>View More Location</span>
+            <HiArrowUpRight className="text-base rotate-45" />
+          </button>
+        </div>
 
 
           </div>

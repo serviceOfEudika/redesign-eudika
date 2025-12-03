@@ -121,7 +121,7 @@ const OurProTutors = () => {
     <section className="py-12 md:py-16 lg:py-20 bg-[#fafafa]">
       <div className="max-w-6xl mx-auto px-4 md:px-13">
         {/* Header Section */}
-        <div className="text-center mb-10 md:mb-12 lg:mb-16">
+        <div className="text-center mb-10 md:mb-12 ">
           {/* Icon and Tutors Text */}
           <div className="flex justify-center mb-4">
             <ShieldIconWithText text="Tutors" iconSize="sm" textSize="sm" />
@@ -272,7 +272,7 @@ const OurProTutors = () => {
                 </div>
 
                 {/* BUTTONS STICK TO END */}
-                <div className="flex gap-2 button-container mt-6" >
+                <div className="flex gap-2 button-container mt-2" >
                   <button
                     className="flex-1 bg-[#edc623] hover:bg-yellow-500
                       text-black py-1  rounded-full text-[9px] md:text-[11px] cursor-pointer
